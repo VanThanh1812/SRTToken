@@ -37,6 +37,13 @@ func RequestSendToken(BodyBuy data_body.BodyBuyToken) *data_response.ResponseBuy
 	auth, err := bind.NewTransactor(strings.NewReader(key), BodyBuy.Password)
 	if err != nil {
 		log.Printf("Failed to create authorized transactor: %v", err)
+		return &data_response.ResponseBuyToken{
+			Data: nil,
+			Err: &data_error.ErrorResponse{
+				Message:"Failed password",
+				Code:500,
+			},
+		}
 	}
 
 	tx, err := SRTToken.Transfer(auth, common.HexToAddress(BodyBuy.Address), big.NewInt(number))
