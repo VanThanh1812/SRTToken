@@ -15,101 +15,17 @@
     },
     "basePath": "/v1",
     "paths": {
-        "/object/": {
+        "/faucet/balance": {
             "get": {
                 "tags": [
-                    "object"
+                    "faucet"
                 ],
-                "description": "get Wallet",
-                "operationId": "WalletController.Get All",
+                "description": "get Balance address by id",
+                "operationId": "FaucetController.Get balance address",
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.Wallet"
-                        }
-                    },
-                    "403": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "object"
-                ],
-                "description": "create Wallet",
-                "operationId": "WalletController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for Wallet content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Wallet"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.Wallet"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/object/{id}": {
-            "get": {
-                "tags": [
-                    "object"
-                ],
-                "description": "get Wallet by id",
-                "operationId": "WalletController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
+                        "name": "address",
                         "description": "The key for staticblock",
                         "required": true,
                         "type": "string"
@@ -119,71 +35,42 @@
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Wallet"
+                            "type": "string"
                         }
                     },
                     "403": {
-                        "description": ":id is empty"
+                        "description": "address is empty"
                     }
                 }
-            },
-            "put": {
+            }
+        },
+        "/faucet/buy": {
+            "post": {
                 "tags": [
-                    "object"
+                    "faucet"
                 ],
-                "description": "update the Wallet",
-                "operationId": "WalletController.Put",
+                "description": "buy token by share link",
+                "operationId": "FaucetController.Buy token",
                 "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Wallet content",
+                        "description": "body for User content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Wallet"
+                            "$ref": "#/definitions/data_body.BodyBuyToken"
                         }
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Wallet"
+                            "type": "string"
                         }
                     },
                     "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "object"
-                ],
-                "description": "delete the Wallet",
-                "operationId": "WalletController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
+                        "description": "body is empty"
                     }
                 }
             }
@@ -363,47 +250,42 @@
         }
     },
     "definitions": {
+        "data_body.BodyBuyToken": {
+            "title": "BodyBuyToken",
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                }
+            }
+        },
         "models.User": {
             "title": "User",
             "type": "object",
             "properties": {
-                "Address": {
+                "address": {
                     "type": "string"
                 },
-                "Avatar": {
+                "avatar": {
                     "type": "string"
                 },
-                "Mid": {
+                "mid": {
                     "type": "string"
                 },
-                "Name": {
+                "name": {
                     "type": "string"
                 },
-                "Sex": {
+                "sex": {
                     "type": "string",
                     "format": "byte"
-                }
-            }
-        },
-        "models.Wallet": {
-            "title": "Wallet",
-            "type": "object",
-            "properties": {
-                "Balance": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "Mid": {
-                    "type": "string"
                 }
             }
         }
     },
     "tags": [
-        {
-            "name": "object",
-            "description": " WalletController operations for Wallet\n"
-        },
         {
             "name": "user",
             "description": " UserController operations for User\n"

@@ -8,21 +8,21 @@
 package routers
 
 import (
-	"SRTToken/controllers"
+	"srttoken/controllers"
 
 	"github.com/astaxie/beego"
 )
 
 func init() {
 	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/object",
-			beego.NSInclude(
-				&controllers.WalletController{},
-			),
-		),
 		beego.NSNamespace("/user",
 			beego.NSInclude(
 				&controllers.UserController{},
+			),
+		),
+		beego.NSNamespace("/faucet",
+			beego.NSInclude(
+				&controllers.FaucetController{},
 			),
 		),
 	)

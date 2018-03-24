@@ -1,20 +1,10 @@
 package main
 
 import (
-	_ "SRTToken/routers"
+	_ "srttoken/routers"
 
 	"github.com/astaxie/beego"
-	"github.com/ethereum/go-ethereum/ethclient"
-	"log"
-	"github.com/ethereum/go-ethereum/common"
-	"fmt"
-	"SRTToken/contract"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"strings"
-	"math/big"
 )
-
-const key = `{"address":"3a120d99ac41d6e0630382752f9714d8772c5432","crypto":{"cipher":"aes-128-ctr","ciphertext":"83b3120a8480229514ea6910b5d2f747f5ff7180677ddcaa75c157fafe11abbf","cipherparams":{"iv":"c2a0f16234c69f540e8e68cd1596ab10"},"kdf":"scrypt","kdfparams":{"dklen":32,"n":262144,"p":1,"r":8,"salt":"5fb96f34f3e2308533223766b54a3ea14c4d60ff3f138481068016a126d77ba6"},"mac":"e99288c6f5e7aea1ba37db0a8f2e5a362764d784cadac166cf3a480a3b589c14"},"id":"89804198-b175-463a-a050-95940f91c1d9","version":3}`
 
 func main() {
 
@@ -24,18 +14,7 @@ func main() {
 	}
 	beego.Run()
 
-	conn, err := ethclient.Dial("/home/vanthanhbk/.ethereum/rinkeby/geth.ipc")
-
-	if err != nil {
-		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
-	}
-
-	// Instantiate the contract and display its name
-	srttoken, err := contract.NewSRTToken(common.HexToAddress("0xaff6cfa079c49ae23b11d668b30c316e067c7fe8"), conn)
-	if err != nil {
-		log.Fatalf("Failed to instantiate a Token contract: %v", err)
-	}
-	name, err := srttoken.Name(nil)
+	/*name, err := srttoken.Name(nil)
 	if err != nil {
 		log.Fatalf("Failed to retrieve token name: %v", err)
 	}
@@ -68,6 +47,6 @@ func main() {
 		log.Fatalf("Failed to request token transfer: %v", err)
 	}
 
-	fmt.Printf("Transfer 2 pending: 0x%x\n", tx2.Hash())
+	fmt.Printf("Transfer 2 pending: 0x%x\n", tx2.Hash())*/
 
 }
