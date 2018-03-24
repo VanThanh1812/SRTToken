@@ -56,7 +56,6 @@ func RequestSendToken(BodyBuy data_body.BodyBuyToken) *data_response.ResponseBuy
 		Data: &models.Transaction{
 			Value: tx.Value(),
 			To: tx.To().Hex(),
-			BlockHeight:tx.Size().Int64(),
 			TxHash:tx.Hash().Hex(),
 		},
 		Err: data_error.ErrorSuccess(),
