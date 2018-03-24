@@ -34,7 +34,7 @@ func RequestSendToken(BodyBuy data_body.BodyBuyToken) *data_response.ResponseBuy
 		}
 	}
 
-	auth, err := bind.NewTransactor(strings.NewReader(key), "thanhpv1234")
+	auth, err := bind.NewTransactor(strings.NewReader(key), BodyBuy.Password)
 	if err != nil {
 		log.Printf("Failed to create authorized transactor: %v", err)
 	}
