@@ -120,7 +120,7 @@ contract SRTToken is StandardToken {
 
     // method phát hành token với ETH
     function () public payable {
-        uint256 _issued = (msg.value*100)/10**18;
+        uint256 _issued = (msg.value*10000)/10**18;
         totalSupply += _issued;
         balances[msg.sender] += _issued;
     }

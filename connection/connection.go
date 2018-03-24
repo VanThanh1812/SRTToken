@@ -20,7 +20,7 @@ func tryConnectChain() *ethclient.Client {
 func GetSRTToken() *contract.SRTToken {
 	conn := tryConnectChain()
 
-	srttoken, err := contract.NewSRTToken(common.HexToAddress("0xaff6cfa079c49ae23b11d668b30c316e067c7fe8"), conn)
+	srttoken, err := contract.NewSRTToken(common.HexToAddress("0x1b4CD093513c03873b330464FE78Ad1F6439bC5C"), conn)
 	if err != nil {
 		log.Println("Failed to instantiate a Token contract: %v", err)
 		return nil
