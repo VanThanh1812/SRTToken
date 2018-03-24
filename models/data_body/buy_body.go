@@ -1,7 +1,7 @@
 package data_body
 
 type BodyBuyToken struct {
-	Link string 	`json:"link"`
 	Address string 	`json:"address"`
+	Number int64	`json:"number"`
 	Password string `json:"password"`
 }
