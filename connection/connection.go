@@ -8,7 +8,7 @@ import (
 )
 
 func tryConnectChain() *ethclient.Client {
-	conn, err := ethclient.Dial("/home/phanvanthanh_mrt/.ethereum/rinkeby/geth.ipc")
+	conn, err := ethclient.Dial("/home/vanthanhbk/.ethereum/rinkeby/geth.ipc")
 	if err != nil {
 		log.Println("Failed to connect to the Ethereum client: %v", err)
 		return nil

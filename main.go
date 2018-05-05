@@ -4,6 +4,8 @@ import (
 	_ "srttoken/routers"
 
 	"github.com/astaxie/beego"
+	"srttoken/connection"
+	"fmt"
 )
 
 func main() {
@@ -12,7 +14,12 @@ func main() {
 		beego.BConfig.WebConfig.DirectoryIndex = true
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 	}
-	beego.Run()
+
+	srt := connection.GetSRTToken()
+	name, _ := srt.Name(nil)
+	fmt.Printf("Token name: 0x%x\n", name)
+
+	//beego.Run()
 
 	/*name, err := srttoken.Name(nil)
 	if err != nil {
